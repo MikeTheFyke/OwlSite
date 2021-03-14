@@ -64,7 +64,52 @@
                     </div>
             </div>  
         </div>
-          
+        <!-- Item Add Container -->
+        <div id="materialOutter">
+          <div id="materialWeightContainer">
+              <div id="materialWeightInputContainer">
+                  <form onsubmit="event.preventDefault();" autocomplete="off">
+                      <label for="otherMaterial">Select a item type:</label>
+                          <select name="otherMaterial" id="otherMaterial">
+                              <option value="hBase">H Base</option>
+                              <option value="centerMount">Center Mount</option>
+                              <option value="offCenterMount">Off Center Mount</option>
+                              <option value="tireBase">TC-54 Tire Bases</option>
+                              <option value="barrels"> TC-54 Barrels</option>
+                              <option value="windMasters">WindMasters</option>
+                              <option value="flipMasters">FlipMasters</option>
+                              <option value="aFrame">A Frame</option>
+                              <option value="metalALeg">S3-Metal A-Leg</option>
+                              <option value="briteline">Briteline Tape (Box)</option>
+                              <option value="ssPaddle">Stop/Slow Paddle</option>
+                          </select>
+                      <div>
+                          <input id="otherNumberInput" placeholder="Enter amount of items">
+                          <button id="submitButton" v-on:click="weightCalculator2">SUBMIT</button>
+                      </div>
+                  </form>
+              </div>
+              <div id="materialWeightOutputContainer">
+                  <h1 id="materialTotalWeightText">Lbs.</h1>
+                  <h1 id="materialTotalWeight">0</h1>
+              <!-- Plus sign weight to total Container -->
+                  <div id="plusItemContainer">
+                      <button id="plusItemButton" v-on:click="itemWeightAdd"><img id="plus" src="../assets/plus.png"></button>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!-- Total Weight Container -->
+        <div id="totalWeightOutterContainer">
+            <button id="minusButton"><img v-on:click="totalWeightClear" id="minus" src="../assets/minus.png"></button>
+            <div id="totalWeightContainer">
+                <h1 id="completeWeightLbs">Lbs.</h1>
+                <h1 id="completeTotalWeight">0</h1>
+            </div>  
+        </div>
+
+
+
   </div>
 </template>
 
@@ -646,6 +691,100 @@ export default {
             else if (this.signsType == ".090POLY"){
                 this.signUnitWeight = 8 ;
             } 
+        },
+                weightCalculator2 () {
+            this.otherMaterial = document.getElementById("otherMaterial").value;
+            this.numberOfItems = document.getElementById("otherNumberInput").value;
+            
+            if (this.otherMaterial == "hBase"){ this.hBases ();}
+            else if (this.otherMaterial == "centerMount"){ this.centerMounts ();}
+            else if (this.otherMaterial == "offCenterMount"){ this.offCenterMounts ();}
+            else if (this.otherMaterial == "tireBase"){ this.tireBases ();}
+            else if (this.otherMaterial == "barrels"){ this.barrels ();}
+            else if (this.otherMaterial == "windMasters"){ this.windMasters ();}
+            else if (this.otherMaterial == "flipMasters"){ this.flipMasters ();}
+            else if (this.otherMaterial == "aFrame"){ this.aFrames ();}
+            else if (this.otherMaterial == "metalALeg"){ this.aLegs ();}
+            else if (this.otherMaterial == "briteline"){ this.britelines ();}
+            else if (this.otherMaterial == "ssPaddle"){ this.ssPaddles ();}
+
+            console.log(this.baseUnitWeight)
+            console.log(this.numberOfItems)
+
+            this.calculateItemWeight = this.baseUnitWeight * this.numberOfItems;
+            document.getElementById("materialTotalWeight").innerHTML = this.calculateItemWeight;
+        },
+        async itemWeightAdd () {
+            this.newItemWeight = document.getElementById("materialTotalWeight").innerHTML;
+            console.log("New Item Weight :" + this.newItemWeight);
+            this.signTotalWeight += parseFloat(this.newItemWeight);
+            document.getElementById("completeTotalWeight").innerHTML = Math.round(this.signTotalWeight * 100) / 100;
+            // this.receiptItems.push({
+            //     name: this.otherMaterial,
+            //     size: "",
+            //     type: "",
+            //     mount: "",
+            //     quantity: this.numberOfItems,
+            //     weight: this.newItemWeight
+            // });
+            await PostService.insertReceipt(this.otherMaterial, "", "", "", this.numberOfItems, this.newItemWeight + " Lbs." )
+            this.newReceipt = await PostService.getReceipt()
+            // var newRow  = document.createElement("tr");
+            // var newName = document.createElement("td"); 
+            // var newSize = document.createElement("td");
+            // var newQuantity = document.createElement("td");
+            // var newWeight = document.createElement("td");
+            // for (this.receiptItem in this.receiptItems){
+            //     newRow.remove();
+            //     newName.innerHTML = this.receiptItems[this.receiptItem].name;
+            //     newSize.innerHTML = "";
+            //     newQuantity.innerHTML = this.receiptItems[this.receiptItem].quantity;
+            //     newWeight.innerHTML = this.receiptItems[this.receiptItem].weight  + " lbs.";
+            //     newRow.append(newName, newSize, newQuantity, newWeight);
+            //     document.getElementById("newItems").appendChild(newRow);
+            // }
+            
+            // console.log(this.receiptItems);
+            document.getElementById("completeTotalWeight").innerHTML = this.signTotalWeight;
+            document.getElementById("otherMaterial").value = "hBase";
+            document.getElementById("materialTotalWeight").innerHTML = 0;
+            document.getElementById("otherNumberInput").value = "";
+        },
+        hBases () {
+            this.baseUnitWeight = 28 ;
+        },
+        centerMounts (){
+            this.baseUnitWeight = 16 ;
+        },
+        offCenterMounts (){
+            this.baseUnitWeight = 16 ;
+        },
+        tireBases (){
+            this.baseUnitWeight = 20.8 ;
+        },
+        barrels (){
+            this.baseUnitWeight = 3.64 ;
+        },
+        windMasters (){
+            this.baseUnitWeight = 32 ;
+        },
+        flipMasters (){
+            this.baseUnitWeight = 24 ;
+        },
+        aFrames (){
+            this.baseUnitWeight = 22 ;
+        },
+        aLegs (){
+            this.baseUnitWeight = 8 ;
+        },
+        britelines (){
+            this.baseUnitWeight = 42 ;
+        },
+        ssPaddles (){
+            this.baseUnitWeight = 4 ;
+        },
+        totalWeightClear(){
+          document.getElementById("completeTotalWeight").innerHTML = 0;  
         }
     }
 }
@@ -767,4 +906,163 @@ button{
     height: 30px;
 }
 
+#materialOutter{
+    position: absolute;
+    top: 140px;
+    left: 0px;
+    width: 100%;
+}
+
+#materialWeightContainer{
+    margin: 0px auto;
+    border-color: #E26125;
+    border-bottom-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    width: 60%;
+    height: 10%;
+    min-width: 610px;
+}
+#materialWeightInputContainer{
+    background-color: #E26125;
+    height: 80%;
+}
+
+#otherMaterial{
+    height: 24px;
+    width: 100px;
+    border-radius: 10px;
+    border-color: white;
+    outline: none;
+    text-align-last:center;
+    margin-right: 10px;
+}
+
+form{
+    display: flex;
+    justify-content: space-around;
+}
+
+label{
+    color: white;
+    font-size: 20px;
+    width: 200px;
+    margin-right: 10px;
+}
+
+#otherNumberInput{
+    height: 24px;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    border-style: hidden;
+    text-align: center;
+    outline: none;
+}
+
+#materialWeightOutputContainer{
+    position: relative;
+    bottom: 0px;
+    left: -3px;
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    color: #1947BA;
+    border-style: solid;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-left-color: #1947BA;
+    border-right-color: #1947BA;
+    border-bottom-color: #1947BA;
+    border-top-color: transparent;
+}
+
+button{
+    height: 30px;
+    background-color: #1947BA;
+    border-radius: 10px;
+    color: white;
+    outline: none;
+}
+
+#materialTotalWeight{
+    margin: 0px;
+    float: right;
+    padding-right: 5px;
+}
+
+#materialTotalWeightText{
+    margin: 0px 10px;
+    float: right;
+}
+
+#plusItemContainer{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    float: left;
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+}
+
+#plusItemButton{
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+}
+
+#plus{
+    width: 30px;
+    height: 30px;
+}
+
+
+#totalWeightOutterContainer{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#minusButton{
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+    position: absolute;
+    bottom: 5px;
+    right: 220px;
+}
+
+#minus{
+    width: 30px;
+    height: 30px;
+}
+
+#totalWeightContainer{
+    display: inline-block;
+    background-color: white;
+    border-color: #E26125;
+    border-style: solid;
+    border-top-left-radius: 25px;
+    width: 200px;
+    height: 33px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+#completeWeightLbs {
+    color: #E26125;
+    float: right;
+    margin: 0px;
+}
+
+#completeTotalWeight {
+    color: #E26125;
+    float: right;
+    padding-right:  5px;
+    margin: 0px;
+}
 </style>

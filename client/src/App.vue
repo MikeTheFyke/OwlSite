@@ -4,17 +4,16 @@
     <button id="OrdersButton" v-on:click="HideItems">Orders</button>
     <Header />
     <AddSign />
-    <!-- <AddItem />
     <AddOrder />
     <AddCarrier />
-    <OrderSearch /> -->
-    <div id="orderTabsContainer">
+    <OrderSearch />
+    <!-- <div id="orderTabsContainer">
       <div id="orderTabsInnerContainer">
         <button class="orderTab" id="addOrderTab" v-on:click="selectAddOrder">Add Order</button>
         <button class="orderTab" id="addCarrierTab" v-on:click="selectAddCarrier">Add Carrier</button>
         <button class="orderTab" id="searchOrderTab" v-on:click="selectSearchOrder">Search Order</button>
       </div>
-    </div>
+    </div> -->
     <div id="itemTabsContainer">
       <div id="itemTabsInnerContainer">
         <button class="itemTab" id="addSignTab" v-on:click="selectAddSign">Add Sign</button>
@@ -43,12 +42,11 @@ export default {
   components: {
     Header,
     AddSign,
-    AddItem,
-    AddOrder,
-    OrderSearch,
-    AddCarrier,
-    TotalWeight,
-    Receipt
+    // AddOrder,
+    // OrderSearch,
+    // AddCarrier,
+    // TotalWeight,
+    // Receipt
   },
     data() {
       return{
