@@ -112,8 +112,8 @@
         </div>
         <!-- Receipt Container -->
         <div class="Receipt-Container">
-          <div id="Receipt-Back"></div>
           <button id="receiptButton" v-on:click="openReceiptModal"><img id="receipt" src="../assets/receipt.png"></button>
+          <div id="Receipt-Back"></div>
             <div id="receiptModal" class="modal" >
               <div class="modal-content">
                     <span class="close" v-on:click="closeReceiptModal">&times;</span>
@@ -847,12 +847,14 @@ export default {
         closeReceiptModal() {
         this.modal.style.display = "none";
         this.back.style.display = "none";
+        this.btn.style.display = "initial";
         TweenMax.to("#itemTabsContainer", 0, { x : 0 })
         TweenMax.to("#materialOutter", 0, { x : 0 })
       },
       openReceiptModal () {
         this.modal.style.display = "block";
         this.back.style.display = "block";
+        this.btn.style.display = "none";
         TweenMax.to("#itemTabsContainer", 0, { x : "100vw" })
         TweenMax.to("#materialOutter", 0, { x : "100vw" })
       },
