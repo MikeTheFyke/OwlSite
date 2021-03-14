@@ -85,7 +85,7 @@ export default {
     //     TweenMax.to("#orderTabsContainer", 0, { x: "-100vw" })
     //     TweenMax.to("#itemTabsContainer", 0, { x: "-100vw" })
     //     TweenMax.to("#itemTabsContainer", 0.50, { x: 0, delay : 0.25 })
-    // },
+    },
     methods: {
         // selectAddOrder(){
         //   TweenMax.to("#addOrderOuterContainer", 0, { zIndex : 3, display: "initial" })
