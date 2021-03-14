@@ -110,8 +110,43 @@
                 <h1 id="completeTotalWeight">0</h1>
             </div>  
         </div>
-
-
+        <!-- Receipt Container -->
+        <div class="Receipt-Container">
+          <div id="Receipt-Back"></div>
+          <button id="receiptButton" v-on:click="openReceiptModal"><img id="receipt" src="../assets/receipt.png"></button>
+            <div id="receiptModal" class="modal" >
+              <div class="modal-content">
+                    <span class="close" v-on:click="closeReceiptModal">&times;</span>
+                    <h1 id="modalHeaderText">Your Weight Receipt</h1>
+                      <div id="receiptDataContainer">
+                          <table id='receiptItemsTable'>
+                              <tr><th>Item type</th><th>Description</th><th>Quantity</th><th>Weight</th></tr>
+                              <tbody id="newItems"></tbody>
+                              <tr>
+                              <tr v-for="(receipt, index) in newReceipt" 
+                                  v-bind:item="receipt" 
+                                  v-bind:index="index" 
+                                  v-bind:key="receipt._id"
+                                  
+                                  >
+                                <td>{{ receipt.name}} </td>
+                                <td>{{ receipt.size }} {{ receipt.type }} {{ receipt.mount }}</td>
+                                <td>{{ receipt.quantity }}</td>
+                                <td id="itemWeight">{{ receipt.weight }}</td>
+                                <button id="deleteButton" v-on:click="deleteReceipt(receipt._id)">X</button>
+                              </tr>
+                          </table>
+                      </div>
+                        <!-- <div id="receiptTotals">
+                            <td class="receiptTotalsItem" id="receiptTotalSpots">Spots</td>
+                            <td class="receiptTotalsItem" id="receiptTotalHandling">Handling Units</td>
+                            <td class="receiptTotalsItem" id="receiptTotalPieces">Piece Count</td>
+                            <td class="receiptTotalsItem" id="receiptCalculatedWeight"> 0 </td>
+                            <td class="receiptTotalsItem" id="receiptTotalWeight"> Total Weight </td>
+                        </div> -->
+              </div>  
+          </div>
+        </div>
 
   </div>
 </template>
@@ -119,6 +154,7 @@
 <script>
 
 import PostService from '../postService'
+import TweenMax  from 'gsap';
 
 export default {
   name: 'AddSign',
@@ -146,8 +182,27 @@ export default {
             
         }
   },
+  async created(){
+    try{
+      this.newReceipt = await PostService.getReceipt()
+
+    } catch(err){
+      this.error = err.message;
+    }
+  },
   
     mounted: function(){
+    this.modal = document.getElementById("receiptModal")
+    this.btn = document.getElementById("receiptButton");
+    this.span = document.getElementsByClassName("close")[0];
+    this.back = document.getElementById("Receipt-Back");
+    
+    window.onclick = function(event) {
+      if (event.target == this.modal) {
+        this.modal.style.display = "none";
+        this.back.style.display = "none";
+      }
+    }
   },
     methods: {
           weightCalculator(){
@@ -788,7 +843,24 @@ export default {
         },
         totalWeightClear(){
           document.getElementById("completeTotalWeight").innerHTML = 0;  
-        }
+        },
+        closeReceiptModal() {
+        this.modal.style.display = "none";
+        this.back.style.display = "none";
+        TweenMax.to("#itemTabsContainer", 0, { x : 0 })
+        TweenMax.to("#materialOutter", 0, { x : 0 })
+      },
+      openReceiptModal () {
+        this.modal.style.display = "block";
+        this.back.style.display = "block";
+        TweenMax.to("#itemTabsContainer", 0, { x : "100vw" })
+        TweenMax.to("#materialOutter", 0, { x : "100vw" })
+      },
+      async deleteReceipt( id ){
+        console.log(id)
+            await PostService.deleteReceipt( id )
+            this.newReceipt = await PostService.getReceipt()
+      },
     }
 }
 </script>
@@ -1080,4 +1152,138 @@ button{
     padding-right:  5px;
     margin: 0px;
 }
+
+/* Receipt Styles */
+
+#Receipt-Back{
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.95;
+}
+
+#receiptModal{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 200px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: transparent;
+}
+
+.modal-content{
+    background-color: #E26125;
+    margin: 0% auto;
+    padding: 0px 5px 5px 5px;
+    border-radius: 25px;
+    width: 70%;
+    border-color: white;
+    border-width: 5px;
+    border-style: solid;
+}
+
+#receiptDataContainer{
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+td{
+    color: #1947BA;
+    font-size: 24px;
+    text-align: center;
+}
+
+.close{
+    float: right;
+    color: #1947BA;
+    font-size: 32px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modalHeaderText {
+    color: white;
+    width: 300px;
+    margin: 0px auto;
+}
+
+#receiptItemsTable{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#receiptItemsTable th{
+  width: 25%;
+  background-color: transparent;
+}
+
+#newItems{
+  width: 25%;
+  color: #1947BA;
+  text-align: center;
+}
+
+#receiptItemsTable tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#deleteButton{
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  color: white;
+  font-size: 12px;
+  background-color: #1947BA;
+  outline: none;
+}
+
+/* Receipt Button */
+#receiptButton{
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+    position: absolute;
+    bottom: 75px;
+    right: 20px;
+}
+#receipt{
+    width: 75px;
+    height: 75px;
+}
+/* Receipt Button */
+
+#receiptTotals{
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: white;
+  display: flex;
+
+}
+
+.receiptTotalsItem{
+  width: 20%;
+  font-size: 16px;
+  text-align: center;
+  white-space:nowrap;
+}
+
 </style>
