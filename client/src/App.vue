@@ -4,10 +4,10 @@
     <button id="OrdersButton" v-on:click="HideItems">Orders</button>
     <Header />
     <AddSign />
-    <AddItem />
+    <!-- <AddItem />
     <AddOrder />
     <AddCarrier />
-    <OrderSearch />
+    <OrderSearch /> -->
     <div id="orderTabsContainer">
       <div id="orderTabsInnerContainer">
         <button class="orderTab" id="addOrderTab" v-on:click="selectAddOrder">Add Order</button>
@@ -21,22 +21,22 @@
         <button class="itemTab" id="addItemTab" v-on:click="selectAddItem">Add Item</button>
       </div>
     </div>
-    <TotalWeight />
-    <Receipt />
+    <!-- <TotalWeight />
+    <Receipt /> -->
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import AddSign from './components/AddSign.vue'
-import Receipt from './components/Receipt.vue'
-import AddItem from './components/AddItem.vue'
-import AddOrder from './components/AddOrder.vue'
-import OrderSearch from './components/LookUpOrder.vue'
-import AddCarrier from './components/AddCarrier.vue'
-import TotalWeight from './components/TotalWeight.vue'
+// import Receipt from './components/Receipt.vue'
+// import AddItem from './components/AddItem.vue'
+// import AddOrder from './components/AddOrder.vue'
+// import OrderSearch from './components/LookUpOrder.vue'
+// import AddCarrier from './components/AddCarrier.vue'
+// import TotalWeight from './components/TotalWeight.vue'
 
-import TweenMax  from 'gsap';
+// import TweenMax  from 'gsap';
 
 export default {
   name: 'App',
@@ -52,107 +52,104 @@ export default {
   },
     data() {
       return{
-        addOrderClicked : false,
-        addCarrierClicked : false,
-        searchOrderClicked : false,
       }
   },
     mounted: function(){
-        TweenMax.to(".header", 0, { scaleY: 0 })
-        TweenMax.to(".header", 0.5, { scaleY: 1, transformOrigin: "top center", delay: 0.25 })
-        TweenMax.to("#HeaderLogo", 0, { opacity: 0 })
-        TweenMax.to("#HeaderLogo", 2, { opacity: 1, delay: 1 })
-        TweenMax.to("#receiptButton", 0, { y: "-100vh", zIndex: -1 })
-        TweenMax.to("#receiptButton", 1.5, { y: 0, zIndex: 1, delay: 0.5, ease: "Bounce.easeOut" })
-        TweenMax.to("#totalWeightOutterContainer", 0, { x: "100vw" })
-        TweenMax.to("#totalWeightOutterContainer", 1, { x: 0, delay: 0.5 })
-        TweenMax.to("#minusButton", 0, { x: "100vw" })
-        TweenMax.to("#minusButton", 1, { x: 0, delay: 0.5 })
+    //     TweenMax.to(".header", 0, { scaleY: 0 })
+    //     TweenMax.to(".header", 0.5, { scaleY: 1, transformOrigin: "top center", delay: 0.25 })
+    //     TweenMax.to("#HeaderLogo", 0, { opacity: 0 })
+    //     TweenMax.to("#HeaderLogo", 2, { opacity: 1, delay: 1 })
+    //     TweenMax.to("#receiptButton", 0, { y: "-100vh", zIndex: -1 })
+    //     TweenMax.to("#receiptButton", 1.5, { y: 0, zIndex: 1, delay: 0.5, ease: "Bounce.easeOut" })
+    //     TweenMax.to("#totalWeightOutterContainer", 0, { x: "100vw" })
+    //     TweenMax.to("#totalWeightOutterContainer", 1, { x: 0, delay: 0.5 })
+    //     TweenMax.to("#minusButton", 0, { x: "100vw" })
+    //     TweenMax.to("#minusButton", 1, { x: 0, delay: 0.5 })
 
-        TweenMax.to("#ItemsButton", 0, { scaleX: 0, scaleY: 0 })
-        TweenMax.to("#ItemsButton", 0.50, { scaleX: 1, scaleY: 1, delay: 0.5 })
-        TweenMax.to("#OrdersButton", 0, { scaleX: 0, scaleY: 0 })
-        TweenMax.to("#OrdersButton", 0.50, { scaleX: 1, scaleY: 1, delay: 0.5 })
+    //     TweenMax.to("#ItemsButton", 0, { scaleX: 0, scaleY: 0 })
+    //     TweenMax.to("#ItemsButton", 0.50, { scaleX: 1, scaleY: 1, delay: 0.5 })
+    //     TweenMax.to("#OrdersButton", 0, { scaleX: 0, scaleY: 0 })
+    //     TweenMax.to("#OrdersButton", 0.50, { scaleX: 1, scaleY: 1, delay: 0.5 })
 
-        TweenMax.to("#materialWeightContainer", 0, { x: "100vw" })
-        TweenMax.to("#materialWeightContainer", 0.50, { x: 0, delay: 0.25 })
+    //     TweenMax.to("#materialWeightContainer", 0, { x: "100vw" })
+    //     TweenMax.to("#materialWeightContainer", 0.50, { x: 0, delay: 0.25 })
 
-        TweenMax.to(".addSign", 0, { x: "100vw" })
-        TweenMax.to(".addSign", 0.50, { x: 0, delay: 0.25 })
+    //     TweenMax.to(".addSign", 0, { x: "100vw" })
+    //     TweenMax.to(".addSign", 0.50, { x: 0, delay: 0.25 })
 
-        TweenMax.to("#addOrderOuterContainer", 0, { x: "-100vw" })
-        TweenMax.to("#orderSearchOuterContainer", 0, { x: "-100vw" })
-        TweenMax.to("#addCarrierOuterContainer", 0, { x: "-100vw" })
+    //     TweenMax.to("#addOrderOuterContainer", 0, { x: "-100vw" })
+    //     TweenMax.to("#orderSearchOuterContainer", 0, { x: "-100vw" })
+    //     TweenMax.to("#addCarrierOuterContainer", 0, { x: "-100vw" })
 
-        TweenMax.to("#materialOutter", 0, { display: "none" })
-        TweenMax.to("#orderTabsContainer", 0, { x: "-100vw" })
-        TweenMax.to("#itemTabsContainer", 0, { x: "-100vw" })
-        TweenMax.to("#itemTabsContainer", 0.50, { x: 0, delay : 0.25 })
-    },
+    //     TweenMax.to("#materialOutter", 0, { display: "none" })
+    //     TweenMax.to("#orderTabsContainer", 0, { x: "-100vw" })
+    //     TweenMax.to("#itemTabsContainer", 0, { x: "-100vw" })
+    //     TweenMax.to("#itemTabsContainer", 0.50, { x: 0, delay : 0.25 })
+    // },
     methods: {
-        selectAddOrder(){
-          TweenMax.to("#addOrderOuterContainer", 0, { zIndex : 3, display: "initial" })
-          TweenMax.to("#addCarrierOuterContainer", 0, { zIndex: 2, display: "none" })
-          TweenMax.to("#orderSearchOuterContainer", 0, { zIndex : 1, display: "none" })
-          TweenMax.to("#addOrderTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
-          TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
-          TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
-        },
-        selectAddCarrier(){
-          TweenMax.to("#addCarrierOuterContainer", 0, { zIndex: 3, display: "initial" })
-          TweenMax.to("#orderSearchOuterContainer", 0, { zIndex : 2, display: "none" })
-          TweenMax.to("#addOrderOuterContainer", 0, { zIndex : 1, display: "none" })
-          TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
-          TweenMax.to("#addOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
-          TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
-        },
-        selectSearchOrder(){
-          TweenMax.to("#orderSearchOuterContainer", 0, { zIndex : 3, display: "initial" })
-          TweenMax.to("#addOrderOuterContainer", 0, { zIndex : 2, display: "none" })
-          TweenMax.to("#addCarrierOuterContainer", 0, { zIndex: 1, display: "none" })
-          TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
-          TweenMax.to("#addOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
-          TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
-        },
-        selectAddSign(){
-          TweenMax.to("#addItemTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
-          TweenMax.to("#addSignTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
-          TweenMax.to("#signOutter", 0, { zIndex : 1, display: "initial" })
-          TweenMax.to("#materialOutter", 0, { zIndex: 0, display: "none" })
-        },
-        selectAddItem(){
-          TweenMax.to("#addItemTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
-          TweenMax.to("#addSignTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
-          TweenMax.to("#signOutter", 0, { zIndex: 0, display: "none" })
-          TweenMax.to("#materialOutter", 0, { zIndex : 1, display: "initial" })
-        },
-        HideItems(){
-          TweenMax.to("#materialWeightContainer", 0.50, { x: "100vw" })
-          TweenMax.to(".addSign", 0.50, { x: "100vw" })
-          TweenMax.to("#ItemsButton", 0.50, { x: "35px", y: "85px", scaleX: 0.5, scaleY: 0.5 })
-          TweenMax.to("#OrdersButton", 0.50, { x: "-35px", y: "-85px", scaleX: 2, scaleY: 2 })
-          TweenMax.to("#addOrderOuterContainer", 0.50, { x: 0 })
-          TweenMax.to("#orderSearchOuterContainer", 0.50, { x: 0 })
-          TweenMax.to("#addCarrierOuterContainer", 0.50, { x: 0 })
-          TweenMax.to("#orderTabsContainer", 0.50, { x: 0 })
-          TweenMax.to("#totalWeightOutterContainer", 0.50, { x: "100vw" })
-          TweenMax.to("#receiptButton", 0.50, { y: "-100vh", zIndex: -1 })
-          TweenMax.to("#itemTabsContainer", 0.50, { x: "-100vw" })
-        },
-        ShowItems(){
-          TweenMax.to("#materialWeightContainer", 0.50, { x: 0 })
-          TweenMax.to(".addSign", 0.50, { x: 0 })
-          TweenMax.to("#ItemsButton", 0.50, { x: 0, y: 0 })
-          TweenMax.to("#ItemsButton", 0.50, { x: 0, y: 0, scaleX: 1, scaleY: 1 })
-          TweenMax.to("#OrdersButton", 0.50, { x: 0, y: 0, scaleX: 1, scaleY: 1 })
-          TweenMax.to("#addOrderOuterContainer", 0.50, { x: "-150vw" })
-          TweenMax.to("#orderSearchOuterContainer", 0.50, { x: "-150vw" })
-          TweenMax.to("#addCarrierOuterContainer", 0.50, { x: "-150vw" })
-          TweenMax.to("#orderTabsContainer", 0.50, { x: "-150vw" })
-          TweenMax.to("#totalWeightOutterContainer", 0.50, { x: 0 })
-          TweenMax.to("#receiptButton", 1.5, { y: 0, zIndex: 1, delay: 0.5, ease: "Bounce.easeOut" })
-          TweenMax.to("#itemTabsContainer", 0.50, { x: 0 })
-        }
+        // selectAddOrder(){
+        //   TweenMax.to("#addOrderOuterContainer", 0, { zIndex : 3, display: "initial" })
+        //   TweenMax.to("#addCarrierOuterContainer", 0, { zIndex: 2, display: "none" })
+        //   TweenMax.to("#orderSearchOuterContainer", 0, { zIndex : 1, display: "none" })
+        //   TweenMax.to("#addOrderTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
+        //   TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+        //   TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+        // },
+        // selectAddCarrier(){
+        //   TweenMax.to("#addCarrierOuterContainer", 0, { zIndex: 3, display: "initial" })
+        //   TweenMax.to("#orderSearchOuterContainer", 0, { zIndex : 2, display: "none" })
+        //   TweenMax.to("#addOrderOuterContainer", 0, { zIndex : 1, display: "none" })
+        //   TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
+        //   TweenMax.to("#addOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+        //   TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+        // },
+        // selectSearchOrder(){
+        //   TweenMax.to("#orderSearchOuterContainer", 0, { zIndex : 3, display: "initial" })
+        //   TweenMax.to("#addOrderOuterContainer", 0, { zIndex : 2, display: "none" })
+        //   TweenMax.to("#addCarrierOuterContainer", 0, { zIndex: 1, display: "none" })
+        //   TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
+        //   TweenMax.to("#addOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+        //   TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+        // },
+        // selectAddSign(){
+        //   TweenMax.to("#addItemTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+        //   TweenMax.to("#addSignTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
+        //   TweenMax.to(".addsign", 0, { zIndex : 1, display: "initial" })
+        //   TweenMax.to("#materialOutter", 0, { zIndex: 0, display: "none" })
+        // },
+        // selectAddItem(){
+        //   TweenMax.to("#addItemTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
+        //   TweenMax.to("#addSignTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+        //   TweenMax.to(".addsign", 0, { zIndex: 0, display: "none" })
+        //   TweenMax.to("#materialOutter", 0, { zIndex : 1, display: "initial" })
+        // },
+        // HideItems(){
+        //   TweenMax.to("#materialWeightContainer", 0.50, { x: "100vw" })
+        //   TweenMax.to(".addSign", 0.50, { x: "100vw" })
+        //   TweenMax.to("#ItemsButton", 0.50, { x: "35px", y: "85px", scaleX: 0.5, scaleY: 0.5 })
+        //   TweenMax.to("#OrdersButton", 0.50, { x: "-35px", y: "-85px", scaleX: 2, scaleY: 2 })
+        //   TweenMax.to("#addOrderOuterContainer", 0.50, { x: 0 })
+        //   TweenMax.to("#orderSearchOuterContainer", 0.50, { x: 0 })
+        //   TweenMax.to("#addCarrierOuterContainer", 0.50, { x: 0 })
+        //   TweenMax.to("#orderTabsContainer", 0.50, { x: 0 })
+        //   TweenMax.to("#totalWeightOutterContainer", 0.50, { x: "100vw" })
+        //   TweenMax.to("#receiptButton", 0.50, { y: "-100vh", zIndex: -1 })
+        //   TweenMax.to("#itemTabsContainer", 0.50, { x: "-100vw" })
+        // },
+        // ShowItems(){
+        //   TweenMax.to("#materialWeightContainer", 0.50, { x: 0 })
+        //   TweenMax.to(".addSign", 0.50, { x: 0 })
+        //   TweenMax.to("#ItemsButton", 0.50, { x: 0, y: 0 })
+        //   TweenMax.to("#ItemsButton", 0.50, { x: 0, y: 0, scaleX: 1, scaleY: 1 })
+        //   TweenMax.to("#OrdersButton", 0.50, { x: 0, y: 0, scaleX: 1, scaleY: 1 })
+        //   TweenMax.to("#addOrderOuterContainer", 0.50, { x: "-150vw" })
+        //   TweenMax.to("#orderSearchOuterContainer", 0.50, { x: "-150vw" })
+        //   TweenMax.to("#addCarrierOuterContainer", 0.50, { x: "-150vw" })
+        //   TweenMax.to("#orderTabsContainer", 0.50, { x: "-150vw" })
+        //   TweenMax.to("#totalWeightOutterContainer", 0.50, { x: 0 })
+        //   TweenMax.to("#receiptButton", 1.5, { y: 0, zIndex: 1, delay: 0.5, ease: "Bounce.easeOut" })
+        //   TweenMax.to("#itemTabsContainer", 0.50, { x: 0 })
+        // }
     }
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
     <div id="signOutter">
+
         <div class="addSign">
             <div id="inputSign">
                 <form onsubmit="event.preventDefault();" autocomplete="off"> 
@@ -62,7 +63,8 @@
                         </div>
                     </div>
             </div>  
-        </div>  
+        </div>
+          
   </div>
 </template>
 
