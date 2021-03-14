@@ -1260,7 +1260,7 @@ td{
     border-color: transparent;
     outline: none;
     position: absolute;
-    bottom: 75px;
+    bottom: 115px;
     right: 20px;
 }
 #receipt{
