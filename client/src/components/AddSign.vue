@@ -1,6 +1,42 @@
 <template>
-    <div id="signOutter">
+    <div>
+        <!-- Item Add Container -->
+        <div id="materialOutter">
+          <div id="materialWeightContainer">
+              <div id="materialWeightInputContainer">
+                  <form onsubmit="event.preventDefault();" autocomplete="off">
+                      <label for="otherMaterial">Select a item type:</label>
+                          <select name="otherMaterial" id="otherMaterial">
+                              <option value="hBase">H Base</option>
+                              <option value="centerMount">Center Mount</option>
+                              <option value="offCenterMount">Off Center Mount</option>
+                              <option value="tireBase">TC-54 Tire Bases</option>
+                              <option value="barrels"> TC-54 Barrels</option>
+                              <option value="windMasters">WindMasters</option>
+                              <option value="flipMasters">FlipMasters</option>
+                              <option value="aFrame">A Frame</option>
+                              <option value="metalALeg">S3-Metal A-Leg</option>
+                              <option value="briteline">Briteline Tape (Box)</option>
+                              <option value="ssPaddle">Stop/Slow Paddle</option>
+                          </select>
+                      <div>
+                          <input id="otherNumberInput" placeholder="Enter amount of items">
+                          <button id="submitButton" v-on:click="weightCalculator2">SUBMIT</button>
+                      </div>
+                  </form>
+              </div>
+              <div id="materialWeightOutputContainer">
+                  <h1 id="materialTotalWeightText">Lbs.</h1>
+                  <h1 id="materialTotalWeight">0</h1>
+              <!-- Plus sign weight to total Container -->
+                  <div id="plusItemContainer">
+                      <button id="plusItemButton" v-on:click="itemWeightAdd"><img id="plus" src="../assets/plus.png"></button>
+                  </div>
+              </div>
+          </div>
+        </div>
 
+      <div id="signOutter">
         <div class="addSign">
             <div id="inputSign">
                 <form onsubmit="event.preventDefault();" autocomplete="off"> 
@@ -64,41 +100,8 @@
                     </div>
             </div>  
         </div>
-        <!-- Item Add Container -->
-        <div id="materialOutter">
-          <div id="materialWeightContainer">
-              <div id="materialWeightInputContainer">
-                  <form onsubmit="event.preventDefault();" autocomplete="off">
-                      <label for="otherMaterial">Select a item type:</label>
-                          <select name="otherMaterial" id="otherMaterial">
-                              <option value="hBase">H Base</option>
-                              <option value="centerMount">Center Mount</option>
-                              <option value="offCenterMount">Off Center Mount</option>
-                              <option value="tireBase">TC-54 Tire Bases</option>
-                              <option value="barrels"> TC-54 Barrels</option>
-                              <option value="windMasters">WindMasters</option>
-                              <option value="flipMasters">FlipMasters</option>
-                              <option value="aFrame">A Frame</option>
-                              <option value="metalALeg">S3-Metal A-Leg</option>
-                              <option value="briteline">Briteline Tape (Box)</option>
-                              <option value="ssPaddle">Stop/Slow Paddle</option>
-                          </select>
-                      <div>
-                          <input id="otherNumberInput" placeholder="Enter amount of items">
-                          <button id="submitButton" v-on:click="weightCalculator2">SUBMIT</button>
-                      </div>
-                  </form>
-              </div>
-              <div id="materialWeightOutputContainer">
-                  <h1 id="materialTotalWeightText">Lbs.</h1>
-                  <h1 id="materialTotalWeight">0</h1>
-              <!-- Plus sign weight to total Container -->
-                  <div id="plusItemContainer">
-                      <button id="plusItemButton" v-on:click="itemWeightAdd"><img id="plus" src="../assets/plus.png"></button>
-                  </div>
-              </div>
-          </div>
         </div>
+
         <!-- Total Weight Container -->
         <div id="totalWeightOutterContainer">
             <button id="minusButton"><img v-on:click="totalWeightClear" id="minus" src="../assets/minus.png"></button>
@@ -791,8 +794,17 @@ export default {
 </script>
 
 <style scoped>
+/* ADD SIGN */
+
+#signOutter{
+    position: absolute;
+    top: 140px;
+    left: 0px;
+    width: 100%;
+}
+
 .addSign{
-    margin: 140px auto;
+    margin: 0px auto;
     background-color: #E26125;
     border-color: #E26125;
     border-bottom-color: white;
@@ -905,7 +917,9 @@ button{
     width: 30px;
     height: 30px;
 }
+/* ADD SIGN */
 
+/* ADD ITEM */
 #materialOutter{
     position: absolute;
     top: 140px;
@@ -1020,6 +1034,7 @@ button{
     height: 30px;
 }
 
+/* ADD ITEM */
 
 #totalWeightOutterContainer{
     position: absolute;
