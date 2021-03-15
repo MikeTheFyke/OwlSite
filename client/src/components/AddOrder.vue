@@ -101,7 +101,9 @@ export default {
   },
     methods: {
         async submitOrder () {
-            this.carrierName = document.getElementById("carrierSelect").value;
+            var e = document.getElementById("carrierSelect")
+
+            this.carrierName = e.options.[e.selectedIndex].text;
             this.serviceType = document.getElementById("serviceSelect").value;
             this.destinationCity = document.getElementById("destinationInput").value;
             this.weight = document.getElementById("weightInput").value;
@@ -109,8 +111,18 @@ export default {
             this.numberSpots = document.getElementById("handlingUnitInput").value;
             this.cost = document.getElementById("costInput").value;
             this.customerName = document.getElementById("customerInput").value;
+
             await OrderService.insertOrder(this.carrierName, this.serviceType, this.destinationCity, this.weight, this.numberSkids, this.numberSpots, this.cost, this.customerName )
             this.newOrder = await OrderService.getOrder()
+
+
+            document.getElementById("serviceSelect").value = "Sameday"
+            document.getElementById("destinationInput").value = ""
+            document.getElementById("weightInput").value = ""
+            document.getElementById("skidsInput").value = ""
+            document.getElementById("handlingUnitInput").value = ""
+            document.getElementById("costInput").value = ""
+            document.getElementById("customerInput").value = ""
         },
     }
 }
