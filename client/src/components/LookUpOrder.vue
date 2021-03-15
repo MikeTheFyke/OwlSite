@@ -21,12 +21,31 @@
 
 <script>
 
+import OrderService from '../orderService'
+
 export default {
   name: 'OrderSearch',
     data() {
         return{
+            newCarrier : [],
+            error : '',
+            carrierName : '',
+            serviceType: '',
+            destinationCity: '',
+            weight: '',
+            numberSkids: '',
+            numberSpots: '',
+            cost: '',
+            customerName: ''
         }
   },
+    async createdOrder(){
+    try{
+        this.newOrder = await OrderService.getOrder()
+        } catch(err){
+        this.error = err.message;
+        }
+    },
     mounted: function(){
   },
     methods: {
