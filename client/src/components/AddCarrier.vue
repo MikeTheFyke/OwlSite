@@ -87,6 +87,11 @@ export default {
             document.getElementById("carrierPhoneInput").value = ""
             document.getElementById("carrierEmailInput").value = ""
         },
+        async deleteCarrier( id ){
+            console.log(id)
+            await CarrierService.deleteCarrier( id )
+            this.newCarrier = await CarrierService.getCarrier()
+        },
     }
 }
 </script>
