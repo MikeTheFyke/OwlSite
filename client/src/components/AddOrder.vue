@@ -6,12 +6,13 @@
                 <div id="carrierSelectContainer" class="selectContainers">
                     <label for="carrierSelect">Select a carrier : </label>
                         <select name="carrierSelect" id="carrierSelect"
-                                  v-for="(carrier, index) in newCarrier" 
-                                  v-bind:item="carrier" 
-                                  v-bind:index="index" 
-                                  v-bind:key="carrier._id"
                                   >
-                            <option value="`${carrier.carrierName}`">{{ carrier.carrierName }}</option>
+                            <option value="`${carrier.carrierName}`"
+                                    v-for="(carrier, index) in newCarrier" 
+                                    v-bind:item="carrier" 
+                                    v-bind:index="index" 
+                                    v-bind:key="carrier._id"
+                                    >{{ carrier.carrierName }}</option>
                         </select>
                 </div>
                 <div id="serviceSelectContainer" class="selectContainers">
