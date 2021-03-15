@@ -16,6 +16,32 @@
             </form>
         </div>
     </div>
+
+        <div class="Receipt-Container">
+            <div id="carrierModal" class="modal" >
+              <div class="modal-content">
+                    <h1 id="modalHeaderText">Carrier List</h1>
+                      <div id="receiptDataContainer">
+                          <table id='receiptItemsTable'>
+                              <tr><th>Carrier Name</th><th>Carrier Phone Number</th><th>Carrier Email Address</th></tr>
+                              <tbody id="newItems"></tbody>
+                              <tr>
+                              <tr v-for="(carrier, index) in newCarrier" 
+                                  v-bind:item="carrier" 
+                                  v-bind:index="index" 
+                                  v-bind:key="carrier._id"
+                                  >
+                                <td>{{ carrier.carrierName}} </td>
+                                <td>{{ carrier.carrierPhone }} </td>
+                                <td>{{ carrier.carrierEmail }}</td>
+                                <button id="deleteButton" v-on:click="deleteCarrier(carrier._id)">X</button>
+                              </tr>
+                          </table>
+                      </div>
+              </div>  
+          </div>
+        </div>
+
   </div>
 </template>
 
@@ -142,4 +168,81 @@ button{
     margin: 1vw 0px 10px 0px;
 }
 
+/* Carrier List */
+
+#carrierModal{
+    display: initial;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 380px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: transparent;
+}
+
+.modal-content{
+    background-color: #E26125;
+    margin: 0% auto;
+    padding: 0px 5px 5px 5px;
+    border-radius: 25px;
+    width: 70%;
+    border-color: white;
+    border-width: 5px;
+    border-style: solid;
+}
+
+#receiptDataContainer{
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+td{
+    color: #1947BA;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+#modalHeaderText {
+    color: white;
+    width: 300px;
+    margin: 0px auto;
+}
+
+#receiptItemsTable{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#receiptItemsTable th{
+  width: 25%;
+  background-color: transparent;
+}
+
+#newItems{
+  width: 25%;
+  color: #1947BA;
+  text-align: center;
+}
+
+#receiptItemsTable tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#deleteButton{
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  color: white;
+  font-size: 12px;
+  background-color: #1947BA;
+  outline: none;
+  float: right;
+  margin-right: 20px;
+}
 </style>

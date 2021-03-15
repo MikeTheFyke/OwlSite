@@ -76,6 +76,8 @@ export default {
         TweenMax.to("#orderTabsContainer", 0, { x: "-100vw" })
         TweenMax.to("#itemTabsContainer", 0, { x: "-100vw" })
         TweenMax.to("#itemTabsContainer", 0.50, { x: 0, delay : 0.25 })
+
+        TweenMax.to("#carrierModal", 0, { x: "-100vw" })
     },
     methods: {
         selectAddOrder(){
@@ -85,6 +87,7 @@ export default {
           TweenMax.to("#addOrderTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
           TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
           TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+          TweenMax.to("#carrierModal", 0, { display: "none" })
         },
         selectAddCarrier(){
           TweenMax.to("#addCarrierOuterContainer", 0, { zIndex: 3, display: "initial" })
@@ -93,6 +96,7 @@ export default {
           TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
           TweenMax.to("#addOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
           TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+          TweenMax.to("#carrierModal", 0, { x: 0, display: "initial" })
         },
         selectSearchOrder(){
           TweenMax.to("#orderSearchOuterContainer", 0, { zIndex : 3, display: "initial" })
@@ -101,6 +105,7 @@ export default {
           TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#E26125", color: "white", borderColor: "#E26125" })
           TweenMax.to("#addOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
           TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
+          TweenMax.to("#carrierModal", 0, { display: "none" })
         },
         selectAddSign(){
           TweenMax.to("#addItemTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
@@ -140,6 +145,7 @@ export default {
           TweenMax.to("#totalWeightOutterContainer", 0.50, { x: 0 })
           TweenMax.to("#receiptButton", 1.5, { y: 0, zIndex: 1, delay: 0.5, ease: "Bounce.easeOut" })
           TweenMax.to("#itemTabsContainer", 0.50, { x: 0 })
+          TweenMax.to("#carrierModal", 0, { x: "-100vw" })
         }
     }
 }
