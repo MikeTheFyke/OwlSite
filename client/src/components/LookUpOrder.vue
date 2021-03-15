@@ -17,14 +17,13 @@
         </div>
     </div>
 
-          <div id="receiptModal" class="modal" >
+          <div id="orderModal" class="modal" >
               <div class="modal-content">
-                    <span class="close" v-on:click="closeReceiptModal">&times;</span>
-                    <h1 id="modalHeaderText">Your Weight Receipt</h1>
-                      <div id="receiptDataContainer">
-                          <table id='receiptItemsTable'>
+                    <h1 id="modalHeaderText">Order List</h1>
+                      <div id="orderDataContainer">
+                          <table id='orderItemsTable'>
                               <tr><th>Carrier Name</th><th>Destination City</th><th>Weight</th><th>Cost</th><th>Customer Name</th></tr>
-                              <tbody id="newItems"></tbody>
+                              <tbody id="newOrders"></tbody>
                               <tr>
                               <tr v-for="(order, index) in newOrder" 
                                   v-bind:item="order" 
@@ -185,12 +184,12 @@ button{
 
 /* Order List */
 
-#receiptModal{
-    display: initial;
+#orderModal{
+    display: none;
     position: absolute;
     z-index: 1;
     left: 0;
-    top: 260px;
+    top: 300px;
     width: 100%;
     height: 100%;
     overflow: auto;
@@ -208,7 +207,7 @@ button{
     border-style: solid;
 }
 
-#receiptDataContainer{
+#orderDataContainer{
     background-color: white;
     border-radius: 15px;
     width: 100%;
@@ -243,23 +242,23 @@ td{
     margin: 0px auto;
 }
 
-#receiptItemsTable{
+#orderItemsTable{
   border-collapse: collapse;
   width: 100%;
 }
 
-#receiptItemsTable th{
-  width: 25%;
+#orderItemsTable th{
+  width: 20%;
   background-color: transparent;
 }
 
-#newItems{
-  width: 25%;
+#newOrders{
+  width: 20%;
   color: #1947BA;
   text-align: center;
 }
 
-#receiptItemsTable tr:nth-child(even){
+#orderItemsTable tr:nth-child(even){
   background-color: #f2f2f2;
 }
 

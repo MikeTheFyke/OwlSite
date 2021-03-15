@@ -78,6 +78,7 @@ export default {
         TweenMax.to("#itemTabsContainer", 0.50, { x: 0, delay : 0.25 })
 
         TweenMax.to("#carrierModal", 0, { x: "-100vw" })
+        TweenMax.to("#orderModal", 0, { x: "-100vw" })
     },
     methods: {
         selectAddOrder(){
@@ -88,6 +89,7 @@ export default {
           TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
           TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
           TweenMax.to("#carrierModal", 0, { display: "none" })
+          TweenMax.to("#orderModal", 0, { display: "none" })
         },
         selectAddCarrier(){
           TweenMax.to("#addCarrierOuterContainer", 0, { zIndex: 3, display: "initial" })
@@ -97,6 +99,7 @@ export default {
           TweenMax.to("#addOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
           TweenMax.to("#searchOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
           TweenMax.to("#carrierModal", 0, { x: 0, display: "initial" })
+          TweenMax.to("#orderModal", 0, { display: "none" })
         },
         selectSearchOrder(){
           TweenMax.to("#orderSearchOuterContainer", 0, { zIndex : 3, display: "initial" })
@@ -106,6 +109,7 @@ export default {
           TweenMax.to("#addOrderTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
           TweenMax.to("#addCarrierTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
           TweenMax.to("#carrierModal", 0, { display: "none" })
+          TweenMax.to("#orderModal", 0, { display: "initial" })
         },
         selectAddSign(){
           TweenMax.to("#addItemTab", 0, { backgroundColor: "#1947BA", color: "white", borderColor: "#1947BA" })
@@ -131,6 +135,7 @@ export default {
           TweenMax.to("#totalWeightOutterContainer", 0.50, { x: "100vw" })
           TweenMax.to("#receiptButton", 0.50, { y: "-100vh", zIndex: -1 })
           TweenMax.to("#itemTabsContainer", 0.50, { x: "-100vw" })
+          TweenMax.to("#orderModal", 0, { x: 0 })
         },
         ShowItems(){
           TweenMax.to("#materialWeightContainer", 0.50, { x: 0 })
@@ -146,6 +151,7 @@ export default {
           TweenMax.to("#receiptButton", 1.5, { y: 0, zIndex: 1, delay: 0.5, ease: "Bounce.easeOut" })
           TweenMax.to("#itemTabsContainer", 0.50, { x: 0 })
           TweenMax.to("#carrierModal", 0, { x: "-100vw" })
+          TweenMax.to("#orderModal", 0, { x: "-100vw" })
         }
     }
 }
