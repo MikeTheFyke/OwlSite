@@ -5,18 +5,14 @@
             <form onsubmit="event.preventDefault();" autocomplete="off">
                 <div id="carrierSelectContainer" class="selectContainers">
                     <label for="carrierSelect">Select a carrier : </label>
-                    <select name="carrierSelect" id="carrierSelect">
-                        <option value="Rosedale">Rosedale</option>
-                        <option value="Pinnacle">Pinnacle</option>
-                        <option value="AandB">A&B</option>
-                        <option value="BulletExpress">BulletExpress</option>
-                        <option value="Aim">AimTransport</option>
-                        <option value="Ajit">AjitTransport</option>
-                        <option value="Canamex">CanamexTrucking</option>
-                        <option value="Charger">Charger</option>
-                        <option value="Challenger">Challenger</option>
-                        <option value="Everest">Everest</option>
-                    </select>
+                        <select name="carrierSelect" id="carrierSelect"
+                                  v-for="(carrier, index) in newCarrier" 
+                                  v-bind:item="carrier" 
+                                  v-bind:index="index" 
+                                  v-bind:key="carrier._id"
+                                  >
+                            <option value="`${carrier.carrierName}`">{{ carrier.carrierName }}</option>
+                        </select>
                 </div>
                 <div id="serviceSelectContainer" class="selectContainers">
                     <label for="serviceSelect">Select a service : </label>
@@ -61,12 +57,30 @@
 
 <script>
 
+import CarrierService from '../carrierService'
+
 export default {
+    
   name: 'AddOrder',
     data() {
         return{
+            newCarrier : [],
+            error : '',
+            carrierName : '',
+            carrierPhone : '',
+            carrierEmail : '',
+            name : '',
+            number : '',
+            email : ''
         }
   },
+    async created(){
+    try{
+        this.newCarrier = await CarrierService.getCarrier()
+        } catch(err){
+        this.error = err.message;
+        }
+    },
     mounted: function(){
   },
     methods: {
