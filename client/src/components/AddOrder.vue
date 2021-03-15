@@ -59,6 +59,7 @@
 <script>
 
 import CarrierService from '../carrierService'
+import OrderService from '../orderService'
 
 export default {
     
@@ -72,7 +73,14 @@ export default {
             carrierEmail : '',
             name : '',
             number : '',
-            email : ''
+            email : '',
+            serviceType: '',
+            destinationCity: '',
+            weight: '',
+            numberSkids: '',
+            numberSpots: '',
+            cost: '',
+            customerName: ''
         }
   },
     async created(){
@@ -82,11 +90,27 @@ export default {
         this.error = err.message;
         }
     },
+    async createdOrder(){
+    try{
+        this.newOrder = await OrderService.getOrder()
+        } catch(err){
+        this.error = err.message;
+        }
+    },
     mounted: function(){
   },
     methods: {
-        submitOrder () {
-
+        async submitOrder () {
+            this.carrierName = document.getElementById("carrierSelect").value;
+            this.serviceType = document.getElementById("serviceSelect").value;
+            this.destinationCity = document.getElementById("destinationInput").value;
+            this.weight = document.getElementById("weightInput").value;
+            this.numberSkids = document.getElementById("skidsInput").value;
+            this.numberSpots = document.getElementById("handlingUnitInput").value;
+            this.cost = document.getElementById("costInput").value;
+            this.customerName = document.getElementById("customerInput").value;
+            await OrderService.insertOrder(this.carrierName, this.serviceType, this.destinationCity, this.weight, this.numberSkids, this.numberSpots, this.cost, this.customerName )
+            this.newOrder = await OrderService.getOrder()
         },
     }
 }
