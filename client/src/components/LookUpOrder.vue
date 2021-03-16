@@ -210,7 +210,7 @@ button{
 
 td{
     color: #1947BA;
-    font-size: 24px;
+    font-size: 18px;
     text-align: center;
 }
 
@@ -233,7 +233,6 @@ td{
 #newOrderItems{
   width: 20%;
   color: #1947BA;
-  text-align: center;
 }
 
 #orderItemsTable tr:nth-child(even){
