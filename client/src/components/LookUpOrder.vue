@@ -1,5 +1,6 @@
 <template>
     <div>
+      
      <div id="orderSearchOuterContainer">
         <div id="orderSearchContainer">
             <form onsubmit="event.preventDefault();" autocomplete="off">
@@ -23,32 +24,24 @@
                       <div id="orderDataContainer">
                           <table id='orderItemsTable'>
                               <tr><th>Carrier Name</th><th>Destination City</th><th>Weight</th><th>Cost</th><th>Customer Name</th></tr>
-                              <tbody id="newOrders"></tbody>
+                              <tbody id="newOrderItems"></tbody>
                               <tr>
                               <tr v-for="(order, index) in newOrder" 
                                   v-bind:item="order" 
                                   v-bind:index="index" 
                                   v-bind:key="order._id"
-                                  
                                   >
-                                <td>{{ order.carrierName }} </td>
+                                <td>{{ order.name }} </td>
                                 <!-- <td>{{ order.serviceType }} </td> -->
                                 <td>{{ order.destinationCity }} </td>
                                 <td>{{ order.weight }} </td>
-                                <!-- <td>{{ order.numberOfSkids }} </td> -->
-                                <!-- <td>{{ order.numberOfSpots }} </td> -->
+                                <!-- <td>{{ order.numberSkids }} </td> -->
+                                <!-- <td>{{ order.numberSpots }} </td> -->
                                 <td>{{ order.cost }} </td>
                                 <td>{{ order.customerName }} </td>
                               </tr>
                           </table>
                       </div>
-                        <!-- <div id="receiptTotals">
-                            <td class="receiptTotalsItem" id="receiptTotalSpots">Spots</td>
-                            <td class="receiptTotalsItem" id="receiptTotalHandling">Handling Units</td>
-                            <td class="receiptTotalsItem" id="receiptTotalPieces">Piece Count</td>
-                            <td class="receiptTotalsItem" id="receiptCalculatedWeight"> 0 </td>
-                            <td class="receiptTotalsItem" id="receiptTotalWeight"> Total Weight </td>
-                        </div> -->
               </div>  
           </div>
 
@@ -75,7 +68,7 @@ export default {
             customerName: ''
         }
   },
-    async createdOrder(){
+    async created(){
     try{
         this.newOrder = await OrderService.getOrder()
         } catch(err){
@@ -187,7 +180,7 @@ button{
 #orderModal{
     display: none;
     position: absolute;
-    z-index: 1;
+    z-index: -1;
     left: 0;
     top: 300px;
     width: 100%;
@@ -221,24 +214,9 @@ td{
     text-align: center;
 }
 
-.close{
-    float: right;
-    color: #1947BA;
-    font-size: 32px;
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-.close:hover,
-.close:focus {
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 #modalHeaderText {
     color: white;
-    width: 300px;
+    width: 150px;
     margin: 0px auto;
 }
 
@@ -252,7 +230,7 @@ td{
   background-color: transparent;
 }
 
-#newOrders{
+#newOrderItems{
   width: 20%;
   color: #1947BA;
   text-align: center;

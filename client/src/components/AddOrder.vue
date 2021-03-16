@@ -26,33 +26,31 @@
                     <div class="inputContainers">
                         <input class="orderInputs" id="destinationInput" placeholder="Enter Destination City">
                     </div>
-
                     <div class="inputContainers">
                         <input class="orderInputs" id="weightInput" placeholder="Enter Total Weight">
                     </div>
-
                     <div class="inputContainers">
                         <input class="orderInputs" id="skidsInput" placeholder="Enter Amount of Skids">
                     </div>
-
                     <div class="inputContainers">
                         <input class="orderInputs" id="handlingUnitInput" placeholder="Enter Amount of Spots">
                     </div>
-
                     <div class="inputContainers">
                         <input class="orderInputs" id="costInput" placeholder="Enter Total Cost">
                     </div>
-
                     <div class="inputContainers">
                         <input class="orderInputs" id="customerInput" placeholder="Enter Customer Name">
                     </div>
-                    
+
                     <div id="submitButtonContainer">
                     <button id="submitOrderButton" v-on:click="submitOrder">Add Order</button>
                     </div>
             </form>
         </div>
     </div>
+
+
+
   </div>
 </template>
 
