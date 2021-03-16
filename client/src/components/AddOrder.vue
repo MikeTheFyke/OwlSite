@@ -100,15 +100,16 @@ export default {
     methods: {
         async submitOrder () {
             var e = document.getElementById("carrierSelect")
+            
 
-            this.carrierName = e.options.[e.selectedIndex].text;
-            this.serviceType = document.getElementById("serviceSelect").value;
-            this.destinationCity = document.getElementById("destinationInput").value;
-            this.weight = document.getElementById("weightInput").value;
-            this.numberSkids = document.getElementById("skidsInput").value;
-            this.numberSpots = document.getElementById("handlingUnitInput").value;
-            this.cost = document.getElementById("costInput").value;
-            this.customerName = document.getElementById("customerInput").value;
+            this.carrierName = e.options.[e.selectedIndex].text
+            this.serviceType = document.getElementById("serviceSelect").value
+            this.destinationCity = document.getElementById("destinationInput").value
+            this.weight = document.getElementById("weightInput").value + " Lbs."
+            this.numberSkids = document.getElementById("skidsInput").value
+            this.numberSpots = document.getElementById("handlingUnitInput").value
+            this.cost = "$" + document.getElementById("costInput").value + ".00"
+            this.customerName = document.getElementById("customerInput").value
 
             await OrderService.insertOrder(this.carrierName, this.serviceType, this.destinationCity, this.weight, this.numberSkids, this.numberSpots, this.cost, this.customerName )
             this.newOrder = await OrderService.getOrder()

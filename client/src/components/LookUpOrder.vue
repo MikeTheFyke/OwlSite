@@ -37,7 +37,7 @@
                                 <td>{{ order.weight }} </td>
                                 <!-- <td>{{ order.numberSkids }} </td> -->
                                 <!-- <td>{{ order.numberSpots }} </td> -->
-                                <td>{{ order.cost }} </td>
+                                <td> {{ order.cost }} </td>
                                 <td>{{ order.customerName }} </td>
                               </tr>
                           </table>
