@@ -137,13 +137,13 @@
                               </tr>
                           </table>
                       </div>
-                        <!-- <div id="receiptTotals">
+                        <div id="receiptTotals">
                             <td class="receiptTotalsItem" id="receiptTotalSpots">Spots</td>
                             <td class="receiptTotalsItem" id="receiptTotalHandling">Handling Units</td>
                             <td class="receiptTotalsItem" id="receiptTotalPieces">Piece Count</td>
                             <td class="receiptTotalsItem" id="receiptCalculatedWeight"> 0 </td>
                             <td class="receiptTotalsItem" id="receiptTotalWeight"> Total Weight </td>
-                        </div> -->
+                        </div>
               </div>  
           </div>
         </div>
@@ -777,32 +777,10 @@ export default {
             console.log("New Item Weight :" + this.newItemWeight);
             this.signTotalWeight += parseFloat(this.newItemWeight);
             document.getElementById("completeTotalWeight").innerHTML = Math.round(this.signTotalWeight * 100) / 100;
-            // this.receiptItems.push({
-            //     name: this.otherMaterial,
-            //     size: "",
-            //     type: "",
-            //     mount: "",
-            //     quantity: this.numberOfItems,
-            //     weight: this.newItemWeight
-            // });
+
             await PostService.insertReceipt(this.otherMaterial, "", "", "", this.numberOfItems, this.newItemWeight + " Lbs." )
             this.newReceipt = await PostService.getReceipt()
-            // var newRow  = document.createElement("tr");
-            // var newName = document.createElement("td"); 
-            // var newSize = document.createElement("td");
-            // var newQuantity = document.createElement("td");
-            // var newWeight = document.createElement("td");
-            // for (this.receiptItem in this.receiptItems){
-            //     newRow.remove();
-            //     newName.innerHTML = this.receiptItems[this.receiptItem].name;
-            //     newSize.innerHTML = "";
-            //     newQuantity.innerHTML = this.receiptItems[this.receiptItem].quantity;
-            //     newWeight.innerHTML = this.receiptItems[this.receiptItem].weight  + " lbs.";
-            //     newRow.append(newName, newSize, newQuantity, newWeight);
-            //     document.getElementById("newItems").appendChild(newRow);
-            // }
-            
-            // console.log(this.receiptItems);
+
             document.getElementById("completeTotalWeight").innerHTML = this.signTotalWeight;
             document.getElementById("otherMaterial").value = "hBase";
             document.getElementById("materialTotalWeight").innerHTML = 0;
