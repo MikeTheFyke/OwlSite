@@ -805,10 +805,29 @@ export default {
             await PostService.insertReceipt(this.otherMaterial, "", "", "", this.numberOfItems, this.newItemWeight + " Lbs." )
             this.newReceipt = await PostService.getReceipt()
 
+            this.newListedWeight = this.newItemWeight
+
+            this.newReceiptTotalWeight += parseFloat(this.newListedWeight)
+            console.log("New Total Weight " + this.newReceiptTotalWeight)
+
+            this.receiptItemWeights.push({
+                id: this.newListedId,
+                weight: this.newListedWeight
+            });
+
+            for (var i = 0; i < this.receiptItemWeights.length; i ++){
+                console.log("New Item Weight " + this.receiptItemWeights[i].weight)
+            }
+
             document.getElementById("completeTotalWeight").innerHTML = this.signTotalWeight;
             document.getElementById("otherMaterial").value = "hBase";
             document.getElementById("materialTotalWeight").innerHTML = 0;
             document.getElementById("otherNumberInput").value = "";
+
+            this.newListedId += 1
+            this.newListedWeight = 0
+
+            document.getElementById("receiptCalculatedWeight").innerHTML = this.newReceiptTotalWeight
         },
         hBases () {
             this.baseUnitWeight = 28 ;
