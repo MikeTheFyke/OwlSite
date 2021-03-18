@@ -182,7 +182,8 @@ export default {
 
             receiptItemWeights: [],
             newListedId : 0,
-            newListedWeight : 0
+            newListedWeight : 0,
+            newReceiptTotalWeight : 0
             
         }
   },
@@ -252,12 +253,14 @@ export default {
 
             this.newListedWeight = this.newWeight
 
+            this.newReceiptTotalWeight += parseFloat(this.newListedWeight)
+            console.log("New Total Weight " + this.newReceiptTotalWeight)
+
             this.receiptItemWeights.push({
                 id: this.newListedId,
                 weight: this.newListedWeight
             });
 
-            // console.log("Length " + this.receiptItemWeights.length)
             for (var i = 0; i < this.receiptItemWeights.length; i ++){
                 console.log("New Item Weight " + this.receiptItemWeights[i].weight)
             }
