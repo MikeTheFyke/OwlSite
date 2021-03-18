@@ -250,8 +250,8 @@ export default {
             this.signTotalWeight += parseFloat(this.newWeight)
             document.getElementById("completeTotalWeight").innerHTML = Math.round(this.signTotalWeight * 100) / 100
 
-            this.newListedId += 1;
-            this.newListedWeight = this.signTotalWeight
+            this.newListedWeight = this.newWeight
+
             this.receiptItemWeights.push({
                 id: this.newListedId,
                 weight: this.newListedWeight
@@ -271,6 +271,9 @@ export default {
             document.getElementById("mountedType").value = "noMount";
             document.getElementById("totalWeight").innerHTML = 0;
             document.getElementById("signsNumberInput").value = "";
+
+            this.newListedId += 1
+            this.newListedWeight = 0
           },
           signs30X30 () {
             if (this.signsType == ".20GA"){
