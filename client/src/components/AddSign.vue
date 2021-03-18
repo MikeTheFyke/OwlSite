@@ -180,8 +180,8 @@ export default {
             weight: '', 
             totalWeight : 0,
 
-            receiptItemWeights: {},
-            newListedId,
+            receiptItemWeights: [],
+            newListedId : 0,
             newListedWeight : 0
             
         }
@@ -250,11 +250,16 @@ export default {
             this.signTotalWeight += parseFloat(this.newWeight)
             document.getElementById("completeTotalWeight").innerHTML = Math.round(this.signTotalWeight * 100) / 100
 
+            this.newListedId += 1;
             this.newListedWeight = this.signTotalWeight
             this.receiptItemWeights.push({
                 id: this.newListedId,
                 weight: this.newListedWeight
             });
+
+            for (var i = 0; i <= this.receiptItemWeights.length; i ++){
+            console.log("New Item Weight" + this.receiptItemWeights.weight[i])
+            }
 
             this.totalWeight += this.newWeight
             await PostService.insertReceipt(this.name, this.signsSize, this.signsType, this.mountType, this.numberOfSigns, this.newWeight + " Lbs." )
