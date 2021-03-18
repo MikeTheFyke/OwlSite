@@ -277,6 +277,8 @@ export default {
 
             this.newListedId += 1
             this.newListedWeight = 0
+
+            document.getElementById("receiptCalculatedWeight").value = this.newReceiptTotalWeight
           },
           signs30X30 () {
             if (this.signsType == ".20GA"){
