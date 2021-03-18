@@ -257,8 +257,9 @@ export default {
                 weight: this.newListedWeight
             });
 
-            for (var i = 0; i <= this.receiptItemWeights.length; i ++){
-            console.log("New Item Weight" + this.receiptItemWeights.weight[i])
+            // console.log("Length " + this.receiptItemWeights.length)
+            for (var i = 0; i < this.receiptItemWeights.length; i ++){
+                console.log("New Item Weight " + this.receiptItemWeights[i].weight)
             }
 
             this.totalWeight += this.newWeight
