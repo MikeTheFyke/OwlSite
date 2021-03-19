@@ -881,15 +881,14 @@ export default {
       },
       async deleteReceipt( id ){
         console.log(id)
-            await PostService.deleteReceipt( id )
-            this.newReceipt = await PostService.getReceipt()
-
-            console.log(this.newReceipt.length)
+        console.log(this.newReceipt.length)
             // for (var i = 0; i < this.newReceipt.length; i ++){
             //     if (this.newReceipt[i]._id == id){
             //         console.log("Selected weight : " + this.receipt[i].weight)
             //     }
             // }
+            await PostService.deleteReceipt( id )
+            this.newReceipt = await PostService.getReceipt()
       },
     }
 }
