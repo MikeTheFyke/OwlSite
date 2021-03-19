@@ -133,7 +133,7 @@
                                 <td>{{ receipt.size }} {{ receipt.type }} {{ receipt.mount }}</td>
                                 <td>{{ receipt.quantity }}</td>
                                 <td id="itemWeight">{{ receipt.weight }}</td>
-                                <button id="deleteButton" v-on:click="deleteReceipt(receipt._id)">X</button>
+                                <button id="deleteButton" v-on:click="deleteReceipt(receipt._id)"><img id="minus" src="../assets/minus.png"></button>
                               </tr>
                           </table>
                       </div>
@@ -1150,14 +1150,11 @@ button{
     background-color: transparent;
     border-color: transparent;
     outline: none;
-    position: absolute;
-    bottom: 5px;
-    right: 220px;
 }
 
 #minus{
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
 }
 
 #totalWeightContainer{
@@ -1284,6 +1281,8 @@ td{
   font-size: 12px;
   background-color: #1947BA;
   outline: none;
+  text-align: center;
+  padding: 0;
 }
 
 /* Receipt Button */
