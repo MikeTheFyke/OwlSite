@@ -141,8 +141,10 @@
                             <td class="receiptTotalsItem" id="receiptTotalSpots">Spots</td>
                             <td class="receiptTotalsItem" id="receiptTotalHandling">Handling Units</td>
                             <td class="receiptTotalsItem" id="receiptTotalPieces">Piece Count</td>
+                            <div id="receiptTotalWeightContainer">
                             <td class="receiptTotalsItem" id="receiptCalculatedWeight"> 0 </td>
                             <td class="receiptTotalsItem" id="receiptTotalWeight"> Total Weight </td>
+                            </div>
                         </div>
               </div>  
           </div>
@@ -1298,6 +1300,12 @@ td{
     width: 75px;
     height: 75px;
 }
+
+#receiptTotalWeightContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
 /* Receipt Button */
 
 #receiptTotals{
