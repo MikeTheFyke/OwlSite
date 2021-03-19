@@ -881,14 +881,14 @@ export default {
         TweenMax.to("#materialOutter", 0, { x : "100vw" })
       },
       async deleteReceipt( id ){
-        this.selectedDeletedWeight = 0
+        // this.selectedDeletedWeight = 0
         console.log(id)
         console.log(this.newReceipt.length)
             for (var i = 0; i < this.newReceipt.length; i ++){
-                if (this.newReceipt[i]._id == id && this.newReceipt.length > 0){
+                if (this.newReceipt[i]._id == id && this.newReceipt.length > 1){
                     console.log("Selected weight : " + this.newReceipt[i].weight)
-                    this.selectedDeletedWeight = this.newReceipt[i].weight
-                    document.getElementById("receiptCalculatedWeight").innerHTML = this.newReceiptTotalWeight - this.selectedDeletedWeight
+                    // this.selectedDeletedWeight = this.newReceipt[i].weight
+                    document.getElementById("receiptCalculatedWeight").innerHTML = Math.round((this.newReceiptTotalWeight - this.newReceipt[i].weight) * 100) / 100
                 } else {
                     document.getElementById("receiptCalculatedWeight").innerHTML = 0
                 }
