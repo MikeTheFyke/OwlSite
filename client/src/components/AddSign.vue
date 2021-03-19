@@ -1277,9 +1277,6 @@ td{
   width: 24px;
   height: 24px;
   border-radius: 12px;
-  color: white;
-  font-size: 12px;
-  background-color: #1947BA;
   outline: none;
   text-align: center;
   padding: 0;
