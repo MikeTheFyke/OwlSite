@@ -883,6 +883,13 @@ export default {
         console.log(id)
             await PostService.deleteReceipt( id )
             this.newReceipt = await PostService.getReceipt()
+
+            console.log(this.newReceipt.length)
+            // for (var i = 0; i < this.newReceipt.length; i ++){
+            //     if (this.newReceipt[i]._id == id){
+            //         console.log("Selected weight : " + this.receipt[i].weight)
+            //     }
+            // }
       },
     }
 }
