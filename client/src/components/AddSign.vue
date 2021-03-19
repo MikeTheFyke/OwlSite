@@ -267,7 +267,7 @@ export default {
             }
 
             this.totalWeight += this.newWeight
-            await PostService.insertReceipt(this.name, this.signsSize, this.signsType, this.mountType, this.numberOfSigns, this.newWeight + " Lbs." )
+            await PostService.insertReceipt(this.name, this.signsSize, this.signsType, this.mountType, this.numberOfSigns, this.newWeight )
             this.newReceipt = await PostService.getReceipt()
 
             document.getElementById("signsSize").value = "30X30";
@@ -886,7 +886,8 @@ export default {
             for (var i = 0; i < this.newReceipt.length; i ++){
                 if (this.newReceipt[i]._id == id){
                     console.log("Selected weight : " + this.newReceipt[i].weight)
-                    selectedDeletedWeight = this.newReceipt[i].weight
+                    this.selectedDeletedWeight = this.newReceipt[i].weight
+                    document.getElementById("receiptCalculatedWeight").innerHTML = this.newReceiptTotalWeight - this.selectedDeletedWeight
                 }
             }
             await PostService.deleteReceipt( id )
