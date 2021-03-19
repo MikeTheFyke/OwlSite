@@ -183,7 +183,8 @@ export default {
             receiptItemWeights: [],
             newListedId : 0,
             newListedWeight : 0,
-            newReceiptTotalWeight : 0
+            newReceiptTotalWeight : 0,
+            selectedDeletedWeight : 0
             
         }
   },
@@ -882,11 +883,12 @@ export default {
       async deleteReceipt( id ){
         console.log(id)
         console.log(this.newReceipt.length)
-            // for (var i = 0; i < this.newReceipt.length; i ++){
-            //     if (this.newReceipt[i]._id == id){
-            //         console.log("Selected weight : " + this.receipt[i].weight)
-            //     }
-            // }
+            for (var i = 0; i < this.newReceipt.length; i ++){
+                if (this.newReceipt[i]._id == id){
+                    console.log("Selected weight : " + this.newReceipt[i].weight)
+                    selectedDeletedWeight = this.newReceipt[i].weight
+                }
+            }
             await PostService.deleteReceipt( id )
             this.newReceipt = await PostService.getReceipt()
       },
